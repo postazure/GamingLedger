@@ -15,3 +15,12 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+
+$('document').ready(function () {
+  loadGroups();
+
+  $("#panel-group-list").on("click",".list-group-item", function (e) {
+    showGroupPage($(this));
+  });
+});
