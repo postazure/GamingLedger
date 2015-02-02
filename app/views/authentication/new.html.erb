@@ -1,0 +1,26 @@
+<h1>Sign In</h1>
+
+
+<%= form_tag signin_path do |f| %>
+<%= flash[:alert] %>
+
+
+<div>
+  <%= label_tag :email %>
+</div>
+<div>
+  <%= email_field_tag :email %>
+</div>
+
+<div>
+  <%= label_tag :password %>
+</div>
+<div>
+  <%= password_field_tag :password %>
+</div>
+
+<div>
+  <%= submit_tag "Sign in" %>
+</div>
+
+<% end %>
