@@ -20,16 +20,14 @@
 $('document').ready(function () {
   init();
 
+  $("#panel-group-list").on("click",".list-group-item", function () { showGroupPage($(this)); });
 
-  $("#panel-group-list").on("click",".list-group-item", function () {
-    showGroupPage($(this));
-  });
+  $("#new-group-action").on("click", function () { newGroupPage(); });
 
-  $("#new-group-action").on("click", function () {
-    newGroupPage();
-  });
+  $("#cancel_create_group").on("click", function () { cancelGroupPage(); });
 
-  $("#cancel_create_group").on("click", function () {
-    cancelGroupPage();
+  $("#panel-group-list").on("click",".edit-group-action", function () {
+    editGroupPage($(this));
+    return false;
   });
 });
