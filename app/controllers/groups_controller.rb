@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    @group.users.push(current_user)
 
     members = []
     params[:members].each do |email|
@@ -27,7 +28,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    render json:@group
+    @members = @group.users
+    render json:[@group, @members]
   end
 
   private

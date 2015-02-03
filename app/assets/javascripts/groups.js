@@ -12,29 +12,42 @@ function loadGroups() {
 }
 
 function showGroupPage(group) {
-  // var id = group.data("id");
-  // $.ajax({
-  //   type:"get",
-  //   url:"/groups/"+id
-  // }).done(function (data) {
-  //   $("#new-group-form").show();
-  //   $('#new-group-form input[name="name"]').val(data.name);
-  //   $('#new-group-form textarea[name="description"]').val(data.description);
-  // }).fail(function (data) {
-  //   throw "failed to load (edit) info";
-  // });
+  closeStages();
+  $("#show-group").show();
+
+  var id = group.data("id");
+  $.ajax({
+    type:"get",
+    url:"/groups/"+id
+  }).done(function (data) {
+    group = data[0];
+    members = data[1];
+    console.log(members);
+    $("#show-group #name")[0].innerText = group.name;
+    $('#show-group #description')[0].innerText = group.description;
+
+    for (var i = 0; i < members.length; i++) {
+      $("#show-group #member-list").append(members[i].email);
+      if (group.owner_id === members[i].id) {
+        $('#show-group #owner')[0].innerText = members[i].email;
+      }
+    }
+  }).fail(function (data) {
+    throw "failed to load (edit) info";
+  });
 }
 
 function newGroupPage() {
+  closeStages();
   $("#new-group-form").show();
-  $("#new-group-action").addClass("active-link");
+  // $("#new-group-action").addClass("active-link");
   createGroup();
 
 }
 
 function cancelGroupPage() {
   $("#new-group-form").hide();
-  $("#new-group-action").removeClass("active-link");
+  // $("#new-group-action").removeClass("active-link");
   $('#new-group-form .form-control').val("");
 }
 
@@ -48,7 +61,6 @@ function editGroupPage(selectedGroup) {
     $("#new-group-form").show();
     $('#new-group-form input[name="name"]').val(data.name);
     $('#new-group-form textarea[name="description"]').val(data.description);
-    console.log(data)
 
   }).fail(function (data) {
     throw "failed to load (edit) info";

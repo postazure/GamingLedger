@@ -31,3 +31,8 @@ $('document').ready(function () {
     return false;
   });
 });
+
+function closeStages() {
+  $("#new-group-form").hide();
+  $("#show-group").hide();
+}
