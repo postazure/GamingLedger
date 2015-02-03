@@ -8,37 +8,23 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-          <% if current_user %>
-            <%= link_to "Sign Out", signout_path, class:"btn btn-default navbar-btn navbar-right" %>
-            <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><%= current_user.email %></a></p>
-          <% else %>
-            <%= link_to "Sign Up", signup_path, class:"btn btn-default navbar-btn navbar-right" %>
-            <%= link_to "Sign In", signin_path, class:"btn btn-default navbar-btn navbar-right" %>
-          <% end %>
-        <div class="navbar-header">
-
-          <a class="navbar-brand" href="/">GamingLeger</a>
-
-        </div>
-      </div>
-    </nav>
-
-  <div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-    <%= render 'shared/side_bar' %>
-    </div>
-    <div class="col-md-9">
-      <div id="full-stage">
-        <%= yield %>
-
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <% if current_user %>
+          <%= link_to "Sign Out", signout_path, class:"btn btn-default navbar-btn navbar-right" %>
+          <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><%= current_user.email %></a></p>
+        <% else %>
+          <%= link_to "Sign Up", signup_path, class:"btn btn-default navbar-btn navbar-right" %>
+          <%= link_to "Sign In", signin_path, class:"btn btn-default navbar-btn navbar-right" %>
+        <% end %>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">GamingLedger</a>
       </div>
     </div>
-  </div>
+  </nav>
+
+  <%= yield %>
+
 
 </div>
 

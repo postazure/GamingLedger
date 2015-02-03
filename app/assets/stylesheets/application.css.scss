@@ -15,3 +15,11 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.active-link {
+  pointer-events:none;
+}
+
+#new-group-action {
+  cursor: pointer;
+}

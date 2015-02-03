@@ -1,0 +1,3 @@
+class SinglePageController < ApplicationController
+  
+end

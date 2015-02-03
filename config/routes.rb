@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+  get "/main" => "single_page#index", as: :main
   resources :groups
 
   # User Authentication Routes

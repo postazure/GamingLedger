@@ -18,9 +18,18 @@
 
 
 $('document').ready(function () {
-  loadGroups();
+  init();
 
-  $("#panel-group-list").on("click",".list-group-item", function (e) {
+
+  $("#panel-group-list").on("click",".list-group-item", function () {
     showGroupPage($(this));
+  });
+
+  $("#new-group-action").on("click", function () {
+    newGroupPage();
+  });
+
+  $("#cancel_create_group").on("click", function () {
+    cancelGroupPage();
   });
 });

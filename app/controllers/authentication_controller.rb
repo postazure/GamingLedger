@@ -6,7 +6,7 @@ class AuthenticationController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to main_path
     else
       flash[:alert] = "Username/Password is invalid"
       render :new

@@ -1,0 +1,24 @@
+<form>
+  <div class="form-group">
+    <%= text_field_tag "name", "", placeholder:"Group Name", class:"form-control" %>
+
+  </div>
+  <div class="form-group">
+    <%= text_area_tag "description", "", rows:"10", placeholder:"Description", class:"form-control" %>
+  </div>
+  <div id="member-list">
+    <div class="form-group">
+      <input type="text" placeholder="New Member" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="button" id="more-members" class="btn btn-info" aria-label="Left Align">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      More Members
+    </button>
+  </div>
+
+  <input type="button" value="Create Group" id="create_group" class="btn btn-primary">
+  <input type="button" value="Cancel" id="cancel_create_group" class="btn btn-default">
+</form>
