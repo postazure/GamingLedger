@@ -40,8 +40,10 @@ Rails.application.configure do
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 587,
-    :domain => "#{ENV['MAILGUN_API_DOMAIN']}.mailgun.org",
-    :user_name => "postmaster@#{ENV['MAILGUN_API_DOMAIN']}.mailgun.org",
-    :password => ENV["MAILGUN_API_KEY"]
+    :domain =>    ENV["MAILGUN_DOMAIN"],
+    :user_name => ENV["MAILGUN_USERNAME"],
+    :password =>  ENV["MAILGUN_PASSWORD"]
 }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 end

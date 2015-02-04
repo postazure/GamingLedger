@@ -9,5 +9,6 @@ class WelcomeController < ApplicationController
 
   def test
     ModelMailer.new_record_notification.deliver
+    render text: 'yo'
   end
 end
