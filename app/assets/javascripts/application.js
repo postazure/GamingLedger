@@ -22,21 +22,27 @@ $('document').ready(function () {
 
   // Groups
   $("#panel-group-list").on("click",".list-group-item", function () {
-    closeStages();
-    $("#create_group").show();
+    $('.screen.active').removeClass('active');
+    $('#show-group').addClass('active');
     showGroupPage($(this));
   });
 
-  $("#new-group-action").on("click", function () { newGroupPage(); });
+  $("#new-group-action").on("click", function () {
+    $('.screen.active').removeClass('active');
+    $('#new-group-form').addClass('active');
+    newGroupPage();
+  });
 
   $("#cancel_create_group").on("click", function () { closeStages(); });
 
   $("#panel-group-list").on("click",".edit-group-action", function () {
-    closeStages();
-    $("#update_group").show();
+    $('.screen.active').removeClass('active');
+    $('#new-group-form').addClass('active');
     editGroupPage($(this));
     return false;
   });
 
-  $("#full-stage").on("click", ".remove-group-member", function () { removeGroupMember($(this)); });
+  $("#full-stage").on("click", ".remove-group-member", function () {
+    removeGroupMember($(this));
+  });
 });

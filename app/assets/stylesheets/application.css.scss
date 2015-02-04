@@ -16,9 +16,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.active-link {
-  pointer-events:none;
-}
 
 #new-group-action {
   cursor: pointer;
@@ -30,4 +27,12 @@
 
 .remove-group-member {
   cursor: pointer;
+}
+
+.screen {
+  display: none
+}
+
+.screen.active {
+  display: block;
 }
