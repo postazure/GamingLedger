@@ -23,6 +23,7 @@ $('document').ready(function () {
   // Groups
   $("#panel-group-list").on("click",".list-group-item", function () {
     closeStages();
+    $("#create_group").show();
     showGroupPage($(this));
   });
 
@@ -31,6 +32,8 @@ $('document').ready(function () {
   $("#cancel_create_group").on("click", function () { closeStages(); });
 
   $("#panel-group-list").on("click",".edit-group-action", function () {
+    closeStages();
+    $("#update_group").show();
     editGroupPage($(this));
     return false;
   });

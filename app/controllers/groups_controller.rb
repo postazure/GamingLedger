@@ -10,19 +10,26 @@ class GroupsController < ApplicationController
     @group.users.push(current_user)
 
     members = []
-    params[:members].each do |email|
-      members.push(User.where(email:email))
+    if params[:members]
+      params[:members].each do |email|
+        members.push(User.where(email:email))
+      end
     end
 
     if @group.save
-
       members.each do |user|
         @group.users.push(user)
       end
-
       render json:@group
     else
       render json:@group.errors
+    end
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+      render json:@group
     end
   end
 

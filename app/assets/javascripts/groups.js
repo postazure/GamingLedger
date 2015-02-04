@@ -1,4 +1,5 @@
 function loadGroups() {
+  $("#panel-group-list").empty();
   $.get("/groups").done(function (data) {
     for (var i = 0; i < data.length; i++) {
       $("#panel-group-list").append(
@@ -38,6 +39,8 @@ function showGroupPage(group) {
 
 function newGroupPage() {
   closeStages();
+  $('#new-group-form input[name="name"]').val("");
+  $('#new-group-form textarea[name="description"]').val("");
   $("#new-group-form").show();
   $("#new-group-action").addClass("active-link");
   createGroup();
@@ -45,8 +48,7 @@ function newGroupPage() {
 }
 
 function editGroupPage(selectedGroup) {
-  closeStages();
-
+  $("#update_group").show();
   var id = selectedGroup.parent().data("id");
   $.ajax({
     type:"get",
@@ -80,10 +82,13 @@ function editGroupPage(selectedGroup) {
   }).fail(function (data) {
     throw "failed to load (edit) info";
   });
+
+  updateGroup(selectedGroup);
 }
 
 
 function createGroup() {
+  $("#create_group").show();
   $("#create_group").on("click", function (e) {
     var members = [];
     var memberEmails = $('#new-group-form input[name="member-id"]');
@@ -106,9 +111,49 @@ function createGroup() {
         "<a href='#' class='list-group-item' data-id='"+ data.id +"'>"+
         "<span class='edit-group-action glyphicon glyphicon-pencil' aria-hidden='true'></span>"+ data.name +"</a>"
       );
-
+      $('#new-group-form input[name="name"]').val("")
+      $('#new-group-form textarea[name="description"]').val("")
     }).fail(function (data) {
       console.log("not saved");
+    });
+  });
+
+  $("#more-members").on("click", function (e) {
+    $("#form-member-list").append(
+      '<div class="form-group">'+
+        '<input type="text" placeholder="New Member" class="form-control" name="member-id">'+
+      '</div>'
+    );
+  });
+}
+
+function updateGroup(selectedGroup) {
+  var id = selectedGroup.parent().data("id");
+  $("#update_group").on("click", function (e) {
+    var members = [];
+    var memberEmails = $('#new-group-form input[name="member-id"]');
+    for (var i = 0; i < memberEmails.length; i++) {
+      members.push($(memberEmails[i]).val());
+    }
+
+    $.ajax({
+      type: "patch",
+      url: "/groups/"+id,
+      data: {
+        group:{
+          name: $('#new-group-form input[name="name"]').val(),
+          description: $('#new-group-form textarea[name="description"]').val()
+        },
+        members: members
+      }
+    }).done(function (data) {
+      console.log("updated: refresh page");
+      loadGroups();
+      $('#new-group-form input[name="name"]').val("");
+      $('#new-group-form textarea[name="description"]').val("");
+
+    }).fail(function (data) {
+      console.log("not updated");
     });
   });
 

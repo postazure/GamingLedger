@@ -13,4 +13,6 @@ function closeShowGroup() {
 function closeNewGroupForm() {
   $("#new-group-form").hide();
   $("#new-group-action").removeClass("active-link");
+  $("#create_group").hide();
+  $("#update_group").hide();
 }
