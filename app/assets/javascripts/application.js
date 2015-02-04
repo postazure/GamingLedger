@@ -20,19 +20,20 @@
 $('document').ready(function () {
   init();
 
-  $("#panel-group-list").on("click",".list-group-item", function () { showGroupPage($(this)); });
+  // Groups
+  $("#panel-group-list").on("click",".list-group-item", function () {
+    closeStages();
+    showGroupPage($(this));
+  });
 
   $("#new-group-action").on("click", function () { newGroupPage(); });
 
-  $("#cancel_create_group").on("click", function () { cancelGroupPage(); });
+  $("#cancel_create_group").on("click", function () { closeStages(); });
 
   $("#panel-group-list").on("click",".edit-group-action", function () {
     editGroupPage($(this));
     return false;
   });
-});
 
-function closeStages() {
-  $("#new-group-form").hide();
-  $("#show-group").hide();
-}
+  $("#full-stage").on("click", ".remove-group-member", function () { removeGroupMember($(this)); });
+});

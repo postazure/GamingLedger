@@ -22,12 +22,11 @@ function showGroupPage(group) {
   }).done(function (data) {
     group = data[0];
     members = data[1];
-    console.log(members);
     $("#show-group #name")[0].innerText = group.name;
     $('#show-group #description')[0].innerText = group.description;
 
     for (var i = 0; i < members.length; i++) {
-      $("#show-group #member-list").append(members[i].email);
+      $("#show-group #group-member-list").append("<li>"+ members[i].email +"</li>");
       if (group.owner_id === members[i].id) {
         $('#show-group #owner')[0].innerText = members[i].email;
       }
@@ -40,28 +39,44 @@ function showGroupPage(group) {
 function newGroupPage() {
   closeStages();
   $("#new-group-form").show();
-  // $("#new-group-action").addClass("active-link");
+  $("#new-group-action").addClass("active-link");
   createGroup();
 
 }
 
-function cancelGroupPage() {
-  $("#new-group-form").hide();
-  // $("#new-group-action").removeClass("active-link");
-  $('#new-group-form .form-control').val("");
-}
-
-
 function editGroupPage(selectedGroup) {
+  closeStages();
+
   var id = selectedGroup.parent().data("id");
   $.ajax({
     type:"get",
     url:"/groups/"+id
   }).done(function (data) {
+    var members = data[1];
+    var group = data[0];
     $("#new-group-form").show();
-    $('#new-group-form input[name="name"]').val(data.name);
-    $('#new-group-form textarea[name="description"]').val(data.description);
+    $('#new-group-form input[name="name"]').val(group.name);
+    $('#new-group-form textarea[name="description"]').val(group.description);
 
+    for (var i = 0; i < members.length; i++) {
+      $("#form-member-list").addClass("list-group");
+
+      var memberItem;
+      if (members[i].id === group.owner_id) {
+        memberItem = $(
+          "<div class='list-group-item' data-id='"+ members[i].id +"'>"+
+            "<strong> Owner </strong> "+ members[i].email +
+          "</div>");
+      }else {
+        memberItem = $(
+          "<div class='list-group-item' data-id='"+ members[i].id +"'>"+
+            members[i].email +
+            "<a class='remove-group-member pull-right'>Remove from Group</a>"+
+          "</div>"
+      );
+      }
+      $("#new-group-form #form-member-list").append( memberItem );
+    }
   }).fail(function (data) {
     throw "failed to load (edit) info";
   });
@@ -98,11 +113,10 @@ function createGroup() {
   });
 
   $("#more-members").on("click", function (e) {
-    $("#member-list").append(
+    $("#form-member-list").append(
       '<div class="form-group">'+
         '<input type="text" placeholder="New Member" class="form-control" name="member-id">'+
       '</div>'
     );
   });
-
 }
