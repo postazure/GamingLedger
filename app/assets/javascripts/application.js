@@ -45,4 +45,23 @@ $('document').ready(function () {
   $("#full-stage").on("click", ".remove-group-member", function () {
     removeGroupMember($(this));
   });
+
+  // Messages
+  $('input[name="go-to-messages"]').on("click", function () {
+    $('.screen.active').removeClass('active');
+    $('#index-message-group').addClass('active');
+    indexMessages($(this).data("group"));
+  });
+
+  $('input[name="new-message"]').on("click", function () {
+    $('.screen.active').removeClass('active');
+    $('#new-message-group').addClass('active');
+    $("#new-message-group > .group-name").text($(this).data("group").name);
+    newMessage($(this).data("group"));
+  });
+
+  $("input[name='cancel-message-group']").on("click", function () {
+    cancelMessageForm();
+  });
+
 });

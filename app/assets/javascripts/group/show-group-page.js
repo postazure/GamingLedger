@@ -16,6 +16,8 @@ function showGroupPage(group) {
         $('#show-group #owner')[0].innerText = members[i].email;
       }
     }
+    $("input[name='go-to-messages']").data("group", group );
+    $('input[name="new-message"]').data("group", group );
   }).fail(function (data) {
     throw "failed to load (edit) info";
   });

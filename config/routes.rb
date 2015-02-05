@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   get "/main" => "single_page#index", as: :main
   resources :groups
-  get "/test" => "welcome#test"
+  resources :messages
+  # get "/test" => "welcome#test"
   # User Authentication Routes
   get "/sign-up" => "registrations#new", as: :signup
   post "/sign-up" => "registrations#create"
