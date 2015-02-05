@@ -1,0 +1,13 @@
+<%= form_for @map do |f| %>
+ <% if @map.errors.any? %>
+ <ul>
+   <% @map.errors.full_messages.each do |msg| %>
+   <li><%= msg %></li>
+   <% end %>
+ </ul>
+ <% end %>
+
+ <%= f.file_field :img_url %>
+ <%= f.text_field :title %>
+ <%= f.submit %>
+ <% end %>

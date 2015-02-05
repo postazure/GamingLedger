@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   post "/sign-in" => "authentication#create"
   get "/sign-out" => "authentication#destroy", as: :signout
 
+  # get "/uploadmaps" => "maps#upload", as: :maps
+  post "/uploadmaps" => "maps#create"
+  get "/maps" => "maps#index"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

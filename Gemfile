@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'bootstrap-sass'
+gem 'carrierwave'
 
 group :production do
   gem "rails_12factor"

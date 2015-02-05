@@ -11,11 +11,6 @@ class MessagesController < ApplicationController
     contacts = group.users
     sender = User.find( group.owner_id )
 
-    puts "#"*200
-    p @contacts
-    puts "#"*200
-
-
     @message.sender_id = current_user.id
     @message.group_id = params[:group_id]
     @message.save
