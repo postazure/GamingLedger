@@ -16,6 +16,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#full-stage {
+  height: 85vh;
+  overflow: hidden  ;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
 
 #new-group-action {
   cursor: pointer;
@@ -35,4 +43,22 @@
 
 .screen.active {
   display: block;
+}
+
+
+#map-view-field {
+  width: 80%;
+  height: 74vh;
+  overflow: scroll;
+}
+
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }

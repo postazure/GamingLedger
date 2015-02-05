@@ -1,9 +1,5 @@
 class MapsController < ApplicationController
 
-  def upload
-    @map = Map.new
-  end
-
   def create
     @map = Map.new(title: params[:title])
     @map.img_url = params[:file]
