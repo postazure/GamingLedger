@@ -33,11 +33,6 @@ $('document').ready(function () {
     newGroupPage();
   });
 
-  $("#cancel_create_group").on("click", function () {
-    resetGroupForm();
-    $('.screen.active').removeClass('active');
-  });
-
   $("#panel-group-list").on("click",".edit-group-action", function () {
     $('.screen.active').removeClass('active');
     $('#new-group-form').addClass('active');
@@ -63,8 +58,10 @@ $('document').ready(function () {
     newMessage($(this).data("group"));
   });
 
-  $("input[name='cancel-message-group']").on("click", function () {
-    cancelMessageForm();
+  //Maps
+  $("input[name='go-to-maps']").on("click", function () {
+    $('.screen.active').removeClass('active');
+    $('#map .index').addClass('active');
+    indexMaps($(this).data("group"));
   });
-
 });

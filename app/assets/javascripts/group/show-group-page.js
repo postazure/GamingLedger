@@ -6,7 +6,7 @@ function showGroupPage(group) {
   }).done(function (data) {
     group = data[0];
     members = data[1];
-    $("#show-group #name")[0].innerText = group.name;
+    $("#group-name")[0].innerText = group.name;
     $('#show-group #description')[0].innerText = group.description;
 
     $("#show-group #group-member-list").empty();
@@ -18,6 +18,7 @@ function showGroupPage(group) {
     }
     $("input[name='go-to-messages']").data("group", group );
     $('input[name="new-message"]').data("group", group );
+    $('input[name="go-to-maps"]').data("group", group );
   }).fail(function (data) {
     throw "failed to load (edit) info";
   });

@@ -24,4 +24,8 @@ function newMessage(group) {
     });
 
   });
+  
+  $("input[name='cancel-message-group']").on("click", function () {
+    cancelMessageForm();
+  });
 }
