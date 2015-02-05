@@ -33,7 +33,10 @@ $('document').ready(function () {
     newGroupPage();
   });
 
-  $("#cancel_create_group").on("click", function () { closeStages(); });
+  $("#cancel_create_group").on("click", function () {
+    resetGroupForm();
+    $('.screen.active').removeClass('active');
+  });
 
   $("#panel-group-list").on("click",".edit-group-action", function () {
     $('.screen.active').removeClass('active');

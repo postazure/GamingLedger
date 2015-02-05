@@ -1,5 +1,5 @@
 class ModelMailer < ActionMailer::Base
-  default from: "GM@GamingLedger.com"
+  default from: "GameLedger@GamingLedger.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

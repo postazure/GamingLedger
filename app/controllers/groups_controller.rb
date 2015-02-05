@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.where(owner_id: current_user.id)
+
+    @groups = current_user.groups
     render json:@groups
   end
 
