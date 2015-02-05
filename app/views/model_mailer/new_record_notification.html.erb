@@ -1,5 +1,13 @@
-<h1>ModelMailer#new_record_notification</h1>
-
-<p>
-  <%= @greeting %>, find me in app/views/model_mailer/new_record_notification.html.erb
-</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  </head>
+  <body>
+    <h3>Hello, <%= @reciever %></h3>
+    <h4> <%= @sender %>, says </h4>
+    <p>
+      <%= @message_info.body %>
+    </p>
+  </body>
+</html>

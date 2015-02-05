@@ -15,6 +15,8 @@ function newMessage(group) {
     }).done(function (data) {
       $('.screen.active').removeClass('active');
       $('#index-message-group').addClass('active');
+      $('input[name="subject"]').val("");
+      $('textarea[name="message-body"]').val("");
       indexMessages(group);
 
     }).fail(function () {
