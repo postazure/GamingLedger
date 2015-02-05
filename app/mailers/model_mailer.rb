@@ -6,11 +6,12 @@ class ModelMailer < ActionMailer::Base
   #
   #   en.model_mailer.new_record_notification.subject
   #
-  def new_record_notification(message_info, contacts)
+  def new_record_notification(message_info, contacts, sender)
     @message_info = message_info
+    @sender = sender.email
     contacts.each do |contact|
       @reciever = contact.email
-      mail(to: "gordonmaxc@gmail.com", subject: @message_info.subject)
+      mail(to: @reciever, subject: @message_info.subject) unless @reciever == @sender
     end
   end
 end

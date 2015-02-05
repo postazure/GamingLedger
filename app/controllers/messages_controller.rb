@@ -7,9 +7,9 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    @contacts = Group.find(
-      params[:group_id]
-    ).users
+    group = Group.find( params[:group_id] )
+    contacts = group.users
+    sender = User.find( group.owner_id )
 
     puts "#"*200
     p @contacts
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
     @message.group_id = params[:group_id]
     @message.save
 
-    ModelMailer.new_record_notification(@message, @contacts).deliver
+    ModelMailer.new_record_notification(@message, contacts, sender).deliver
 
     render json:@message
   end
