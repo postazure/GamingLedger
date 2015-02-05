@@ -16,5 +16,5 @@
 /tmp
 
 
-.env
+/.env
 public/uploads/*
