@@ -21,13 +21,13 @@ function indexMaps(group) {
 
   $(".map-list").on("click", "li", function () {
     $('.screen.active').removeClass('active');
-    $('#map .show').addClass('active');
+    $('#map .view').addClass('active');
 
     var imgSrc = $(this).data("url");
     $("#map #map-view-field").empty();
 
-    $("#map-view-field").append('<h4 class="screen active">'+ $(this).text() +'</h4>');
-    $("#map-view-field").append("<img class='screen active' src="+ imgSrc +" />");
+    $("#map-view-field").append('<h4>'+ $(this).text() +'</h4>');
+    $("#map-view-field").append("<img src="+ imgSrc +" />");
   });
 
 
